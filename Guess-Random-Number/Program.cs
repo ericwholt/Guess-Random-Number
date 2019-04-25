@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Guess_Random_Number
 {
@@ -10,22 +6,17 @@ namespace Guess_Random_Number
     {
         static void Main(string[] args)
         {
-
             Console.WriteLine("Welcome to the Guess a Number Game!");
             Console.WriteLine("+++++++++++++++++++++++++++++++++++");
 
-
-            for(int i = 0; i<100; i++)
+            Boolean run = true;
+            while (run == true)
             {
-                Console.WriteLine(GenerateRandomNumber());
+                playGame();
+                run = Continue();
             }
-            
-            
-            playGame();
-
-
-
         }
+
 
         static int getValidInteger()
         {
@@ -62,12 +53,13 @@ namespace Guess_Random_Number
                 {
                     DisplayWinMessage(count);
                 }
-                else if(userInput > randomNum)
+                else if (userInput > randomNum)
                 {
-                    if(userInput > randomNum + 10)
+                    if (userInput > randomNum + 10)
                     {
                         Console.WriteLine("Way t00 high! Try again n00b!");
-                    } else
+                    }
+                    else
                     {
                         Console.WriteLine("Too high! Try again!");
                     }
@@ -120,7 +112,7 @@ namespace Guess_Random_Number
 
         public static bool CheckGuess(int userInput, int randomNum)
         {
-            if(userInput == randomNum)
+            if (userInput == randomNum)
             {
                 return true;
             }
@@ -131,6 +123,30 @@ namespace Guess_Random_Number
         {
             Random rnd = new Random();
             return rnd.Next(1, 101);
+        }
+
+        public static Boolean Continue()
+        {
+            Console.WriteLine("Continue? Y/N");
+            string input = Console.ReadLine();
+            Boolean run = false;
+            input.ToLower();
+
+            if (input == "n")
+            {
+                Console.WriteLine("Good bye");
+                run = false;
+            }
+            else if (input == "y")
+            {
+                run = true;
+            }
+            else
+            {
+                Console.WriteLine("I don't understand. Try again!");
+                run = Continue();
+            }
+            return run;
         }
     }
 }
