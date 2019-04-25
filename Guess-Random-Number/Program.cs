@@ -15,7 +15,10 @@ namespace Guess_Random_Number
             Console.WriteLine("+++++++++++++++++++++++++++++++++++");
 
 
-
+            for(int i = 0; i<100; i++)
+            {
+                Console.WriteLine(GenerateRandomNumber());
+            }
             
             
             playGame();
