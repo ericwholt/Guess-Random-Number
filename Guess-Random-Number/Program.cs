@@ -13,16 +13,13 @@ namespace Guess_Random_Number
 
             Console.WriteLine("Welcome to the Guess a Number Game!");
             Console.WriteLine("+++++++++++++++++++++++++++++++++++");
-
-
-
-            
-            
-            playGame();
-
-
-
-        }
+            Boolean run = true;
+            while (run == true)
+               {
+                playGame();
+                run = Continue();
+               }
+          }
 
         static int getValidInteger()
         {
@@ -128,6 +125,28 @@ namespace Guess_Random_Number
         {
             Random rnd = new Random();
             return rnd.Next(1, 101);
+                  public static Boolean Continue()
+      {
+        Console.WriteLine("Continue? Y/N");
+        string input = Console.ReadLine();
+        Boolean run = false;
+        input.ToLower();
+
+        if (input == "n")
+        {
+          Console.WriteLine("Good bye");
+          run = false;
+        }
+        else if (input == "y")
+        {
+          run = true;
+        }
+        else
+        {
+          Console.WriteLine("I don't understand. Try again!");
+          run = Continue();
+        }
+        return run;
         }
     }
 }
